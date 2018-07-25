@@ -6,7 +6,6 @@ import time
 sense = SenseHat()
 sense.clear()
 
-
 class stack():
 	def __init__(self):
 		pygame.init()
@@ -17,24 +16,35 @@ class stack():
 		pygame.time.set_timer(USEREVENT +1, 800)
 		x = 0	
 		y = 7
-		speed = 0.3
+		speed = 0.5
+		blue  = (0, 0, 255)
+		red  = (255, 0, 0)
 		#resets position of the light
-		while self.gaming: # self.gaming is essentially a boolean, set it to false if you want to break the loop
+		while self.gaming: # self.gaming is a boolean, set it to false if you want to break the loop
 			for event in pygame.event.get():
 				if event.type == KEYDOWN:
-					sense.set_pixel(x - 1, y, (0, 0, 255))
-				else:
 					sense.set_pixel(x, y, (0, 0, 255))
+					if y == 7:
+						line = x
+					elif y == 0:
+						self.gaming = False
+						sense.show_message("You win!", 0.05, text_colour=red, back_colour=blue)
+						sense.clear()
+						y = 7
+					if line != x:
+						self.gaming = False
+						sense.show_message("You lose!", 0.05, text_colour=red, back_colour=blue)
+						sense.clear()
+					y -= 1
+				else:
+					sense.set_pixel(x, y, (0, 255, 0))
 					time.sleep(speed)
 					sense.set_pixel(x, y, (0, 0, 0))
 					x += 1
-					time.sleep(speed)
-					if y == 0 and x == 8:
-						y = 7
+					if x == 8:
 						x = 0
 					elif x == 8:
 						x = 0
-						y -= 1
 
 if __name__ == '__main__':
 	try:
