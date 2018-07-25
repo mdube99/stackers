@@ -22,7 +22,7 @@ class stack():
 			for event in pygame.event.get():
 				sense.set_pixel(x, y, (0, 0, 255))
 				x += 1
-				time.sleep(0.2)
+				time.sleep(0.1)
 				sense.clear()
 				if y == 0 and x == 8:
 					y = 7
