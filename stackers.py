@@ -17,6 +17,8 @@ class stack():
 		pygame.time.set_timer(USEREVENT +1, 800)
 		x = 0	
 		y = 7
+		speed = 0.3
+		#resets position of the light
 		while self.gaming:
 			for event in pygame.event.get():
 				if event.type == KEYDOWN:
@@ -26,10 +28,10 @@ class stack():
 					sense.clear()
 				else:
 					sense.set_pixel(x, y, (0, 0, 255))
-					time.sleep(0.3)
+					time.sleep(speed)
 					sense.set_pixel(x, y, (0, 0, 0))
 					x += 1
-					time.sleep(0.3)
+					time.sleep(speed)
 					if y == 0 and x == 8:
 						y = 7
 						x = 0
@@ -43,3 +45,4 @@ if __name__ == '__main__':
 		game.startGame()
 	except KeyboardInterrupt:
 		sense.clear()
+		print "\n"
