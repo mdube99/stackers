@@ -12,16 +12,24 @@ class stack():
 		pygame.init()
 		pygame.display.set_mode((640, 480)) #640, 480 is the size of the window
 		self.gaming = True
-	
+
 	def startGame(self):
-		pygame.time.set_timer(USEREVENT +1, 800)
+		pygame.time.set_timer(USEREVENT +1, 200)
+		x = 0	
+		y = 7
+		x2 = x + 1
 		while self.gaming:
 			for event in pygame.event.get():
-				if event.type == KEYDOWN:
-					sense.set_pixel(1, 6, (0, 0, 255))
-					time.sleep(0.5)
-					sense.clear()
-					
+				sense.set_pixel(x, y, (0, 0, 255))
+				x += 1
+				time.sleep(0.2)
+				sense.clear()
+				if y == 0 and x == 8:
+					y = 7
+					x = 0
+				elif x == 8:
+					x = 0
+					y -= 1
 
 if __name__ == '__main__':
 	try:
