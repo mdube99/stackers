@@ -19,13 +19,10 @@ class stack():
 		y = 7
 		speed = 0.3
 		#resets position of the light
-		while self.gaming:
+		while self.gaming: # self.gaming is essentially a boolean, set it to false if you want to break the loop
 			for event in pygame.event.get():
 				if event.type == KEYDOWN:
 					sense.set_pixel(x - 1, y, (0, 0, 255))
-					self.gaming = False
-					time.sleep(5)
-					sense.clear()
 				else:
 					sense.set_pixel(x, y, (0, 0, 255))
 					time.sleep(speed)
